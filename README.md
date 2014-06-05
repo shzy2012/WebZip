@@ -9,7 +9,7 @@ using  DotNetZip http://dotnetzip.codeplex.com/
 
 Firstly, Zip some files to a zip file, then download the zip
 
-Eample
+Example
 
 
  string ZipFileToCreate = Server.MapPath(@"~/ZIP/download.zip");
@@ -45,13 +45,9 @@ Eample
                 System.Console.Error.WriteLine("exception: " + ex1);
             }
 
-            Response.Clear();
-            //Response.ClearContent();
-            //Response.ClearHeaders();
-            //Response.Buffer = true;
-            Response.AppendHeader("Content-Disposition", "attachment; filename=VAU.zip");
-            //Response.AppendHeader("Content-Cength", file.Length.ToString());
-            Response.ContentType = "application/x-zip-compressed";
-            Response.WriteFile(ZipFileToCreate);
-            //Response.Flush();
-            Response.End();
+            response.Clear();
+            response.AppendHeader("Content-Disposition", "attachment; filename=VAUFiles.zip");
+            response.ContentType = "application/x-zip-compressed";
+            response.WriteFile(ZipFileToCreate);
+            response.Flush();
+            response.Close();
